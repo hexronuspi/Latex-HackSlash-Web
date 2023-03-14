@@ -1,0 +1,276 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Welcome to Overleaf --- just edit your LaTeX on the left,
+% and we'll compile it for you on the right. If you open the
+% 'Share' menu, you can invite other users to edit at the same
+% time. See www.overleaf.com/learn for more info. Enjoy!
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{tcolorbox}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+\graphicspath{{Images/}}
+\begin{document}
+*This document is written in LATEX, by Aditya Raj (2204126/ECE-B), for raw LATEX code click \href{https://www.example.com/}{\textcolor{blue}{here}}.
+\begin{center}
+\textbf{\Large Team 405 Found (Web Team) Induction Tasks}
+\end{center}
+\hspace{0.54cm}\textbf{\Large Task 01}
+
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+\lstset{
+   language=JavaScript,
+   backgroundcolor=\color{lightgray},
+   extendedchars=true,
+   basicstyle=\footnotesize\ttfamily,
+   showstringspaces=false,
+   showspaces=false,
+   numbers=left,
+   numberstyle=\footnotesize,
+   numbersep=9pt,
+   tabsize=2,
+   breaklines=true,
+   showtabs=false,
+   captionpos=b
+}
+\section*{Question 1}
+What are the pop-up boxes available in JavaScript? Explain with an example.\vspace{3\baselineskip}
+Popup boxes are used in JavaScript to show the user a message or notification. The Alert Box, Confirm Box, and Prompt Box are the three different forms of pop-up boxes available in JavaScript. These pop-up bubbles may be applied in a variety of ways to a web site to offer feedback or solicit user participation.\vspace{2\baselineskip}
+
+Alert box: This shows the user a message along with a "OK" button. Using the alert() function, it is produced.
+
+\begin{lstlisting}[caption=Alert Box Snippet]
+alert("I am an alert box!");
+\end{lstlisting}
+
+Confirm box: This shows a message and two buttons for the user to click (OK and Cancel). Using the confirm() technique, it is produced.
+
+\begin{lstlisting}[caption=Confirm Box Snippet]
+if (confirm("Press a button!")) {
+  txt = "You pressed OK!";
+} else {
+  txt = "You pressed Cancel!";
+}
+\end{lstlisting}
+
+Prompt box:The user can enter data in the text input field and message shown in the prompt box. It has two buttons as well ("OK" and "Cancel"). Using the prompt() technique, it is produced.
+
+\begin{lstlisting}[caption=Prompt Box Snippet]
+let person = prompt("Please enter your name", "Harry Potter");
+let text;
+if (person == null || person == "") {
+  text = "User cancelled the prompt.";
+} else {
+  text = "Hello " + person + "! How are you today?";
+}
+\end{lstlisting}
+\vspace{18\baselineskip}
+
+\section*{Question 2}
+What is the use of a Map object in JavaScript? Explain with an example\vspace{3\baselineskip}
+
+A Map object in JavaScript is a powerful tool for connecting data to keys. You gain the capacity to store and retrieve data effectively and flexibly. For example, a database of individuals and their birthdays may be stored in a Map object, with the key being the person's name and the value being the person's birthdate.\vspace{2\baselineskip}
+\begin{lstlisting}[caption=Map Object Snippet]
+// Maps in JavaScript: We can use any type of key or value
+const myMap = new Map();
+const key1 = 'myStr', key2 = {}, key3 = function () { };
+// Setting map values
+myMap.set(key1, 'This is a book');
+myMap.set(key2, 'Empty');
+myMap.set(key3, 'This is an empty function');
+console.log(myMap);
+// Getting the values from a Map 
+let value1 = myMap.get(key1);
+console.log(value1);
+//We can also print this by,
+//console.log(obj1.get('myStr'));
+//Expected output : This is a book
+
+//Similarly we can print for other two!
+\end{lstlisting}
+
+\vspace{24\baselineskip}
+\textbf{\Large Task 02}
+\section*{Question 1}
+1. Suppose you have a div class circle inside another div class box which contains buttons
+rotate left, rotate right. Write a code snippet for script file to change the orientation of
+circle and box according to clicking action perform on these two buttons.
+\vspace{2\baselineskip}
+
+HTML and CSS Code Snippets
+\begin{lstlisting}[language=HTML]
+ <style>
+     .container {
+      width: 200px;
+      height: 200px;
+      background-color: rgb(255, 248, 106);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) ;
+    }
+    .circle {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: red;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      align-items: center;
+    }
+    button {
+      margin-top: 20px;
+    }
+  </style>
+   <div class="container">
+    <div class="circle">
+    </div>
+    <button id="rotateLeftCircle">Rotate Left Circle</button>
+    <button id="rotateRightCircle">Rotate Right Circle</button>
+    <button id="rotateLeftBox">Rotate LeftBox</button>
+    <button id="rotateRightBox">Rotate RightBox</button>
+  </div>
+\end{lstlisting}
+\vspace{10\baselineskip}
+JavaScript Code Snippet
+\begin{lstlisting}[caption=JS Task 02 (i)]
+    const container = document.querySelector('.container');
+    const rotateLeftBo = document.querySelector('#rotateLeftBox');
+    const rotateRightBo = document.querySelector('#rotateRightBox');
+    let rotationBo = 0;
+
+    function rotateContainer(degrees) {
+        rotationBo += degrees;
+      container.style.transform = `translate(-50%, -50%) rotate(${rotationBo}deg)`;
+    }
+
+    rotateLeftBo.addEventListener('click', () => {
+      rotateContainer(-60);
+    });
+
+    rotateRightBo.addEventListener('click', () => {
+      rotateContainer(60);
+    });
+
+    const circle = document.querySelector('.circle');
+    const rotateLeft = document.querySelector('#rotateLeftCircle');
+    const rotateRight = document.querySelector('#rotateRightCircle');
+    let rotation = 0;
+
+    function rotateCircle(degrees) {
+      rotation += degrees;
+      circle.style.transform = `rotate(${rotation}deg) translate(-50%, -50%)`;
+    }
+
+    rotateLeft.addEventListener('click', () => {
+      rotateCircle(-30);
+    });
+
+    rotateRight.addEventListener('click', () => {
+      rotateCircle(30);
+    });
+\end{lstlisting}
+\vspace{8\baselineskip}
+\section*{Question 2}
+2. Suppose you have a div class circle inside another div class box which contains buttons
+bgCircle(to change the background color of circle), bgBox(to change the background color of
+box). Write a code snippet for script file to randomly change the background color of circle
+and box according to clicking action perform on these two buttons.
+
+\vspace{2\baselineskip}
+HTML and CSS Code Snippets
+\begin{lstlisting}[language=HTML]
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      margin: 50px auto;
+      background-color: lightblue;
+    }
+
+    .circle {
+      width: 200px;
+      height: 200px;
+      margin: 50px auto;
+      border-radius: 50%;
+      background-color: lightblue;
+    }
+  </style>
+
+  <div class="box">
+    <div class="circle">
+    </div>
+    <button id="changeColorBtn1">Box Color Change</button>
+    <button id="changeColorBtn2">Circle Color Change</button>
+  </div>
+\end{lstlisting}
+\vspace{19\baselineskip}
+JavaScript Code Snippet
+\begin{lstlisting}[caption=JS Task 02 (ii)]
+    const box = document.querySelector('.box');
+    const changeColorBtn1 = document.querySelector('#changeColorBtn1');
+
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    changeColorBtn1.addEventListener('click', () => {
+      const randomColor = getRandomColor();
+      box.style.backgroundColor = randomColor;
+    });
+
+    const circle = document.querySelector('.circle');
+    const changeColorBtn2 = document.querySelector('#changeColorBtn2');
+
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    changeColorBtn2.addEventListener('click', () => {
+      const randomColor = getRandomColor();
+      circle.style.backgroundColor = randomColor;
+    });
+      \end{lstlisting}
+\vspace{15\baselineskip}
+\textbf{\Large Task 03}
+\vspace{2\baselineskip}
+
+2. Create your portfolio website in which at least personal information, educational
+information, skills sections must be present.
+
+- Images are produced here on this page and the folder(zip file) is uploaded on \href{https://www.example.com/}{\textcolor{blue}{Google Drive}}*, and it's live view is on \href{https://hexronuspi.github.io/Team405NITP/}{\textcolor{blue}{GitHub Pages}}*. 
+*
+'Google Drive' and 'GitHub Pages' are hyperlinks, click to re-direct. 
+\end{document}
